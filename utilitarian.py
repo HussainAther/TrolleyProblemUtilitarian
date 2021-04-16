@@ -15,16 +15,14 @@ did you find yourself in a case in which you have to resort to pullling a
 lever to save the lives of others?)
 """
 
-def trolley(y):
-    """
-    Given input graph of the trolley problem, calculate the optimal route that kills the 
-    fewest number of people. The input y is a list of dictionaries to describe the neighbors 
-    and number of people trapped to each track. The dictionary should use each key as the node 
-    and entries as the neighbors and number of people on the track connecting that node to neighbor.
-    """
-    s = 0
-    p = []
-    f = 0
-    mini = min(y(d, s+d[f][t], p+[f],t) for t in d[f]) 
-    return f in p and s or mini
+"""
+Given input graph of the trolley problem, calculate the optimal route that kills the 
+fewest number of people. The input d is a dictionary to describe the neighbors 
+and number of people trapped to each track. The dictionary should use each key as the node 
+and entries as the neighbors and number of people on the track connecting that node to neighbor.
+"""
+
+y = lambda d,s=0,p=[],f=0:f in p and s or min(y(d,s+d[f][t],p+[f],t)for t in d[f])
+d = {0: {1: 0}, 1: {2: 5, 3: 1}, 2: {2: 0}, 3: {3: 0}}
+
 
