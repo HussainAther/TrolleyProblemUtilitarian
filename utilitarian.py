@@ -1,3 +1,6 @@
+import numpy as np
+import random
+
 """
 We implement a basic, simplified utilitarian method of reasoning to solve
 the trolley problem. The problem consists of deciding whether to pull
@@ -24,3 +27,4 @@ def trolley(y):
     f = 0
     mini = min(y(d, s+d[f][t], p+[f],t) for t in d[f]) 
     return f in p and s or mini
+
