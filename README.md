@@ -38,3 +38,7 @@ def trolley(y):
     mini = min(y(d, s+d[f][t], p+[f],t) for t in d[f]) 
     return f in p and s or mini
   ```
+
+## References
+Jean-François Bonnefon, Azim Shariff, & Iyad Rahwan (2015). The social dilemma of autonomous vehicles Science, 352(6293), 1573-1576 (2016) arXiv: 1510.03346v2
+
