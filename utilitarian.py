@@ -1,3 +1,4 @@
+import networkx as nx
 import numpy as np
 import random
 
@@ -35,4 +36,12 @@ def gen_graph(nodes):
     for i in range(nodes):
         nodedict = {} # 
         outputdict.append(nodedict)
-    return outputdict 
+    return outputdict
+
+"""
+Using Networkx for directed graphs.
+"""
+
+DG = nx.DiGraph()
+DG.add_weighted_edges_from([(1, 2, 0.5), (3, 1, 0.75)])
+print(list(DG.successors(1))) 
