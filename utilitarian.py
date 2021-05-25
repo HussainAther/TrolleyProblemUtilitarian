@@ -10,7 +10,8 @@ kill fewer people tied to the tracks.
 
 Given a directed graph as an input variable and a nonnegative integer attached to
 each edge (the number of people tied to that track), how should the Trolley proceed in such
-a way to kill the fewest number of people as possible? Still, this argument has
+a way to kill the fewest number of people as possible? While a programming solution
+may offer a utilitarian answer to the dilemma, this argument still has
 its limits. It assumes each human has the same utility and that changing the
 path the train would take is completely within our control. It also doesn't 
 address the question of what caused the scenario to begin with (e.g., how 
@@ -25,7 +26,7 @@ and number of people trapped to each track. The dictionary should use each key a
 and entries as the neighbors and number of people on the track connecting that node to neighbor.
 """
 
-y = lambda d,s=0,p=[],f=0:f in p and s or min(y(d,s+d[f][t],p+[f],t)for t in d[f])
+y = lambda d,s=0,p=[],f=0:f in p and s or min(y(d,s+d[f][t],p+[f],t) for t in d[f])
 d = {0: {1: 0}, 1: {2: 5, 3: 1}, 2: {2: 0}, 3: {3: 0}}
 
 def gen_graph(nodes):
@@ -33,8 +34,10 @@ def gen_graph(nodes):
     For a given number of nodes, generate a graph dictionary.
     """
     outputdict = {} # output dictionary containing the directed graph of the overall structure 
-    for i in range(nodes):
-        nodedict = {} # 
+    nodedict = {}
+    for i in range(1, nodes):
+        
+        nodedict[i] = random.randint(0,i) 
         outputdict.append(nodedict)
     return outputdict
 
@@ -44,4 +47,26 @@ Using Networkx for directed graphs.
 
 DG = nx.DiGraph()
 DG.add_weighted_edges_from([(1, 2, 0.5), (3, 1, 0.75)])
-print(list(DG.successors(1))) 
+# print(list(DG.successors(1)))
+
+# print(y(d))
+# print(gen_graph(4))
+
+# print(list(DG))
+
+"""
+Rewrite the code for calculating the optimal route such that we can 
+use Networkx directed graphs as input. 
+"""
+
+def tpsol(d, s=0, p=[], f=0):
+    """
+    Find the Trolley Problem solution given the utilitarian argument described.
+    Arguments:
+        d : a dictionary with a key to describe the neighbours 
+            and value as a number of people trapped to each track
+        s :   
+    """
+    return f in p and s or min(tpsol(d,s+d[f][t],p+[f],t)for t in d[f])
+
+print(tpsol(d))
