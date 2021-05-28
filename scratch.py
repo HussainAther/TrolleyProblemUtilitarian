@@ -22,7 +22,7 @@ def tpsol(d, s=0, p=[], f=0):
 
 def tpsolnx(G, s=0, p=[], f=0):
     """
-    
+    The same but with Networkx 
     """
     return
 
