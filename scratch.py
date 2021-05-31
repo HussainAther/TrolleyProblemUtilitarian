@@ -24,7 +24,7 @@ def tpsolnx(G, s=0, p=[], f=0):
     """
     The same but with Networkx 
     """
-    return f in p and s or min(tpsolnx(G,s+G.degree[f],t) 
+    return f in p and s or min(tpsolnx(G,s+G.degree[f],G.degree) for t in G.degree) 
 
 print("edges")
 print(list(G.edges)) 
