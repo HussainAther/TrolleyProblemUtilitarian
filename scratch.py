@@ -24,7 +24,9 @@ def tpsolnx(G, s=0, p=[], f=0):
     """
     The same but with Networkx 
     """
-    return f in p and s or min(tpsolnx(G,s+G.degree[f],G.degree) for t in G.degree) 
+    return f in p and s or min(tpsolnx(G,s+G.degree[f],G.degree,t) for t in G.degree) 
+
+tpsolnx(G)
 
 print("edges")
 print(list(G.edges)) 
@@ -32,7 +34,3 @@ print(list(G.edges))
 print("degree")
 print(G.degree[1])
 
-for n, nbrs in G.adj.items():
-   for nbr, eattr in nbrs.items():
-       wt = eattr['weight']
-       if wt < 0.5: print(f"({n}, {nbr}, {wt:.3})") 
